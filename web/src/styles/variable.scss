@@ -1,0 +1,39 @@
+/**
+ *  备注：
+ *  该文件已全局注入所有的scss文件中，不需要手动import来引入该文件
+ **/
+
+// 颜色定义
+$theme-color: #4D8BED;
+$nav-color: #0f203a;
+$content-bg: #FFFFFF;
+$white: #FFFFFF;
+$dark-background-topbar: #000000; //顶部条颜色
+
+$primary-btn-color: $theme-color;
+
+$login-project-name: #373B40;
+$login-bg-color: #E7F1FF;
+$login-title-color: #333748;
+$login-label-color: #81868C;
+
+$nav-white: #fff;
+$menu-nor-color: #B5BBD1;
+$header-font-color: #FFF;
+
+//危险操作
+$dark-danger-clr: #F94319;
+$dark-danger-clr-hover: #F94319;
+$dark-danger-clr-active: #F9431980;
+
+//普通操作
+$dark-normal-clr: #B8C1E0;
+$dark-normal-clr-hover: #B8C1E0;
+$dark-normal-clr-active: #B8C1E080;
+
+// 布局定义
+$header-height: 64px;
+$page-min-width: 1280px;
+$side-menu-width: 200px;
+
+$ant-prefix: 'antd';

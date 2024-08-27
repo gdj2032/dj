@@ -1,0 +1,24 @@
+# application.yml
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/dj
+    username: root
+    password: 12345678
+  servlet:
+    multipart:
+      # 配置文件上传下载的大小限制
+      max-file-size: 1MB
+      max-request-size: 1MB
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启SQL语句打印
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/*Mapper.xml
+
+server:
+  port: 19999
+  servlet:
+    context-path: /api

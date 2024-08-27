@@ -1,0 +1,7 @@
+package com.dj.base.dao;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.github.yulichang.base.MPJBaseMapper;
+
+public interface ContainerBaseMapper<T> extends BaseMapper<T>, MPJBaseMapper<T> {
+}

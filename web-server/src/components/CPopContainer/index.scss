@@ -1,0 +1,19 @@
+.modal-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 1000;
+  overflow: auto;
+
+  .pop-container {
+    position: absolute;
+    overflow: auto;
+    box-shadow: 0 0 4px 0 rgba(234, 235, 237, 0.50);
+    border-radius: 2px;
+    background: #ffffff;
+    border: 1px solid #D8D8D8;
+  }
+}

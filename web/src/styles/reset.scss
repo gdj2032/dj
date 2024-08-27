@@ -1,0 +1,149 @@
+// reset style
+* {
+  font-family: "Hiragino Sans GB", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  // 修复iOS下滑动卡顿
+  -webkit-overflow-scrolling: touch;
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+// ul {
+//   list-style: none;
+// }
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+img,
+embed,
+iframe,
+object,
+audio,
+video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.yuna-breadcrumb {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 0 16px;
+}
+
+.ant-affix {
+  background-color: #fff;
+}
+
+.text-area-resize-none {
+  & textarea {
+    resize: none;
+  }
+}
+
+.global-black-symbol {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  line-height: 16px;
+  border-radius: 50% 50%;
+  background-color: #000;
+  color: #fff;
+  font-size: 10px;
+  margin: 0 4px;
+}
+
+.global-red-point {
+  display: inline-block;
+  margin-right: 4px;
+  color: #ff4d4f;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  line-height: 1;
+  content: '*';
+}
+
+.wmde-markdown h1,
+.wmde-markdown h2 {
+  border-bottom: none;
+}

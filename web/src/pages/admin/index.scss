@@ -1,0 +1,32 @@
+.g-admin {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .ant-tabs {
+    height: 100%;
+    overflow: hidden;
+
+    .ant-tabs-nav {
+      background-color: $white;
+      padding: 0 12px 12px;
+      border-radius: 4px;
+      margin: 0;
+    }
+
+    .ant-tabs-content-holder {
+      height: 100%;
+      overflow-y: hidden;
+      background-color: $white;
+      border-radius: 4px;
+
+      .ant-tabs-content {
+        flex: 1;
+        overflow-y: auto;
+        height: 100%;
+        padding: 12px;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>dj-base</artifactId>
+    <groupId>com.dj.base</groupId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <parent>
+        <artifactId>dj-server</artifactId>
+        <groupId>com.dj</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <modules>
+        <module>dj-base-common</module>
+        <module>dj-base-user</module>
+        <module>dj-base-dao</module>
+    </modules>
+</project>

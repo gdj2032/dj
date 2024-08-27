@@ -1,0 +1,47 @@
+{
+  "presets": [
+    [
+      // babel预设
+      "@babel/preset-env",
+      {
+          // 使用corejs 3的版本
+          "corejs": 2,
+          // 按需加载
+          "useBuiltIns": "entry",
+          // 不使用模块化  交给其它打包工具处理
+          "modules": false
+      }
+    ],
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    ["import", {
+      "libraryName": "antd",
+      "libraryDirectory": "es",
+      "style": "css" // `style: true` 会加载 less 文件
+    }],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-export-namespace-from", { "legacy": true }],
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-private-property-in-object",
+      {
+        "loose": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-private-methods",
+      {
+        "loose": true
+      }
+    ], // 解决 Though the "loose" option was set to "false" in your @babel/preset-env config...
+    ["@babel/plugin-transform-runtime"],
+    ["@babel/plugin-syntax-dynamic-import"]
+  ]
+}

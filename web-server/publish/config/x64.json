@@ -1,0 +1,42 @@
+{
+  "asar": false,
+  "productName": "资料库",
+  "copyright": "Copyright © 2020 GDJ Inc. All Rights Reserved.",
+  "appId": "doongjie.gu",
+  "directories": {
+    "buildResources": "res",
+    "output": "./pc_release/output/x64"
+  },
+  "electronDist": ".\\publish\\electronDist\\x64",
+  "win": {
+    "icon": "../../favicon.ico",
+    "files": [
+      "res",
+      "package.json",
+      {
+        "from": "pc_release/release",
+        "to": "../app/release"
+      },
+      {
+        "from": "node_modules/socket.io-client",
+        "to": "../socket.io-client"
+      },
+      "!node_modules/**"
+    ],
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "legalTrademarks": "gdj"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "perMachine": true,
+    "deleteAppDataOnUninstall": true
+  }
+}
