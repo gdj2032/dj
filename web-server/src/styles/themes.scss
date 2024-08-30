@@ -1,0 +1,33 @@
+.light {
+  --login-title-color: #000;
+  --login-form-bg: rgba(255, 255, 255, 0.5);
+  --theme-bg: #f8f7f7;
+  --theme-font: #000;
+  --theme-border-color: #CCCCCC;
+  --theme-bg-doc-bg: #fff;
+  --theme-bg-container: #f4f4f4;
+
+  --logo-color: #fff;
+  --logo-bg: #000;
+  --header-bar-bg: #fff;
+  --home-bg-img: url(../images/bg_light.jpeg);
+
+  --book-top-bg: rgba(2, 158, 145, 0.3);
+}
+
+.dark {
+  --login-title-color: #fff;
+  --login-form-bg: rgba(0, 0, 0, 0.5);
+  --theme-bg: #001529;
+  --theme-font: #fff;
+  --theme-border-color: #676767;
+  --theme-bg-doc-bg: #012343;
+  --theme-bg-container: rgb(24, 28, 57);
+
+  --logo-color: #000;
+  --logo-bg: #fff;
+  --header-bar-bg: #313131;
+  --home-bg-img: url(../images/bg_dark.jpeg);
+
+  --book-top-bg: rgba(0, 98, 90, 0.8);
+}

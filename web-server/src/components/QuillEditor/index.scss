@@ -1,0 +1,107 @@
+@import 'quill/dist/quill.snow.css';
+@import 'highlight.js/styles/monokai-sublime.min.css';
+
+.g-quill-editor {
+  position: relative;
+  height: 600px;
+  display: flex;
+  padding-bottom: 20px;
+
+  .m-quill-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .p-quill-editor {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+  }
+
+  .ql-audio,
+  .ql-preview {
+    padding: 3px 5px !important;
+    display: flex !important;
+    align-items: center !important;
+
+    .ql-audio-icon,
+    .ql-preview-icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .g-quill-toast {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: rgb(203, 203, 203);
+    z-index: 99999;
+  }
+
+  .g-quill-toast-success {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .g-quill-toast-error {
+    background-color: #FF6363;
+  }
+
+  .g-quill-toast-warning {
+    background-color: #FFCA63;
+  }
+}
+
+.g-quill-preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+
+  .m-quill-preview {
+    position: relative;
+    width: 60%;
+    height: 60%;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+
+    .p-preview-title {
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .p-quill-preview {
+      flex: 1;
+      padding: 0 0;
+      overflow-y: auto;
+    }
+
+    .p-preview-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+
+      .i-close {
+        cursor: pointer;
+        font-size: 20px;
+      }
+    }
+  }
+}
