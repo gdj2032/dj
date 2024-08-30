@@ -13,7 +13,7 @@ export enum SettingKey {
   session = 'session',
 }
 
-class Setting extends EventEmitter {
+class Settings extends EventEmitter {
   private tempSettings: Set<SettingKey> = new Set();
   private memSetings: Map<SettingKey, any> = new Map();
 
@@ -33,6 +33,7 @@ class Setting extends EventEmitter {
   public isTempSetting(key: SettingKey) {
     return this.tempSettings.has(key);
   }
+
   private saveSetting(key: SettingKey, newSetting: any) {
     let notify = false;
     //比较新旧的Setting
@@ -130,5 +131,5 @@ class Setting extends EventEmitter {
   }
 }
 
-const instance = new Setting();
-export default instance;
+const Setting = new Settings();
+export default Setting;

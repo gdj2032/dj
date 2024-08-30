@@ -42,6 +42,7 @@
         line-height: 32px;
         display: flex;
         align-items: center;
+        cursor: pointer;
 
         .default-app-icon {
           width: 20px;
@@ -97,8 +98,10 @@
 
   .page-frame-content {
     flex: 1;
-    height: 100%;
     overflow: hidden;
+    // background: $white;
+    display: flex;
+    flex-direction: column;
   }
 }
 

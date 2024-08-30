@@ -1,7 +1,6 @@
 $comp-name: 'items-row';
-$comp-prefix: 'c-items-row';
 
-.#{$comp-prefix} {
+.#{$comp-name} {
   display: flex;
   height: 100%;
   flex-direction: row;

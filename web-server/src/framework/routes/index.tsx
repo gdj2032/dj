@@ -1,37 +1,90 @@
-import React, { useEffect, useState } from 'react';
+import { PageFrame } from '@/components';
+import { isElectron } from '@/constants';
+import { routeAction, sysAction, useAppSelector } from '@/stores';
+import React, { useEffect, useMemo } from 'react';
 import { HashRouter, Routes } from 'react-router-dom';
-// import { CPopContainer, CToast } from '@/components';
-import ContainerPage from '../container';
-import autoImport from './autoImport';
 import routeList from './routeList';
-import { loginRoute, pageRoute, PathConfig } from './routes';
-
-autoImport()
+import { initViews } from '@/utils';
+import { System } from '@/pages';
+import pageRoutes from '@/pages/pageRoutes';
+import { ConfigProvider, theme } from 'antd';
 
 const Roots = () => {
-  const [curHash, setCurHash] = useState(window.location.hash)
+
+  const { routes: storeRoute } = useAppSelector(routeAction.routeInfo)
+  const { sysTheme }  =useAppSelector(sysAction.sysInfo)
+
+  const routes = useMemo(() => {
+    const r = storeRoute.map(e => {
+      const Comp = require(`@/pages${e.path}`).default
+      return { path: e.path , Component: Comp, p: `#${e.path}` }
+    })
+    return [...r, { path: '*', Component: System }]
+  }, [storeRoute])
+
+  console.info('--- routes --->', routes);
+
   useEffect(() => {
-    // const browserLanguage = (navigator.language || navigator.language).toLowerCase().split(/[-_]/)[0];
-    // console.info('🚀 ~ file: index.tsx ~ line 40 ~ useEffect ~ browserLanguage', browserLanguage)
-    setCurHash(window.location.hash)
+    initViews();
   }, [])
-  const routes = pageRoute();
-  const getContainer = () => {
-    if (curHash.includes(PathConfig.login)) {
-      return (
-        <Routes>
-          {routeList(loginRoute)}
-        </Routes>
-      )
+
+  useEffect(() => {
+    if (window.location.hash === '#/' || window.location.hash === '') {
+      window.location.hash = pageRoutes.home
+    } else if (!routes.map(e => e.p).includes(window.location.hash)) {
+      window.location.hash = pageRoutes.home
     }
-    return <ContainerPage routes={routes} />
+  }, [window.location.hash, routes])
+
+  function changeTheme(themeObj) {
+    const vars = Object.keys(themeObj).map(key => `--${key}:${themeObj[key]}`).join(';')
+    document.documentElement.setAttribute('style', vars)
   }
+
+  function getTheme() {
+    // 更改项目内自定义主题
+    changeTheme({ "theme-color": sysTheme === 'black' ? '#1890ff' : 'green' })
+    // 更改antd组件主题
+    if (sysTheme === 'black') {
+      return {
+        token: {
+          colorPrimary: '#4994EC',
+          colorTextQuaternary: '#ffffff',
+          colorTextPlaceholder: 'rgba(255,255,255,0.5)',
+          colorTextLabel: 'rgba(255,255,255,0.5)',
+          colorBgContainer: 'rgba(73,148,236,0.06)'
+        },
+        components: {
+          Card: {
+            colorBgContainer: 'rgba(73,148,236,0.06)'
+          },
+          Layout: {
+            colorBgLayout: 'rgba(73,148,236,0.02)'
+          },
+        },
+        algorithm: theme.darkAlgorithm,
+      }
+    } else {
+      return {
+        token: {
+          colorPrimary: '#497dbd',
+        },
+      }
+    }
+  }
+
   return (
-    <HashRouter>
-      {getContainer()}
-      {/* <CToast ref={c => CToast.setRef(c)} />
-      <CPopContainer ref={c => CPopContainer.setRef(c)} /> */}
-    </HashRouter>
+    <ConfigProvider
+      theme={getTheme()}
+    >
+      <PageFrame hideTitleBar={!isElectron}>
+        <HashRouter>
+            <Routes>
+              {routeList(routes)}
+            </Routes>
+        </HashRouter>
+      </PageFrame>
+    </ConfigProvider>
   );
 }
 

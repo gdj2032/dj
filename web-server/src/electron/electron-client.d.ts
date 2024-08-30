@@ -13,7 +13,7 @@ export declare type CreateWindowParam = {
   isModal?: boolean;
   intent?: Intent;
   userParam?: any;
-  parentId?: number;
+  father_id?: number;
   /**
    * Web模式下，是否打开新标签: target='_blank'
    */
@@ -119,7 +119,10 @@ declare class ElectronClient {
   hookWindowMessage(message: number, cb: () => void): void;
   unhookWindowMessage(message: number, cb: () => void): void;
   getSysInfo(): any;
-  openExternal(url): void;
+  openUrl(url: string): void;
+  setBook(data: { filename: string, content: string, filepath: string }): { filepath: string, error: string }
+  getBook(data: { filename: string }): { content: string, error: string }
+  deleteBook(data: { filename: string }): void
 }
 declare global {
   interface Window {

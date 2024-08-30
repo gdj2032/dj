@@ -1,49 +1,34 @@
-import { API_HOST, Credentials } from '@/constants';
+import { API_HOST, Credentials, isElectron } from '@/constants';
 import { genQuery, abortablePromise } from './helper';
-import { message } from 'antd'
-import { instance, doLogout } from '@/utils';
+import { message } from 'antd';
+import { store } from '@/stores';
+import { doLogout, initViews } from '@/utils';
 
-const methods = ['GET', 'POST', 'PUT', 'DELETE'];
+const methods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'];
 
-async function checkStatus(response: any, toast: boolean = true) {
+function checkStatus(response: any, download?: boolean) {
   switch (response.status) {
     case 200:
-      const SESSION = response.headers?.get?.('SESSION');
-      instance.session = SESSION;
-      return response.text().then((text: string) => Promise.resolve(text ? JSON.parse(text) : {}));
-    case 401:
-      return (response.json()).then((json: any) => {
-        message.error(json.message)
-        doLogout()
-        return Promise.reject(json);
-      });
-    case 400:
-      return (response.json()).then((json: any) => {
-        if (json.message && toast) {
-          message.error(json.message)
-        }
-        return Promise.resolve(json);
-      });
-    case 500:
-      try {
-        const json = await response?.json?.()
-        if (toast) {
-          if (json?.message) {
-            message.error(json.message)
-          } else {
-            message.error('服务器错误')
-          }
-        }
-        return Promise.resolve(json);
-      } catch (error) {
-        if (toast) {
-          message.error('服务器错误')
-        }
+      if (download) {
+        return response.blob().then((blob: Blob) => {
+          return Promise.resolve(blob);
+        });
       }
-      return Promise.resolve({});
+      return response.text().then((text: string) => {
+        const r = text ? JSON.parse(text) : {}
+        console.log("🚀 ~ returnresponse.text ~ r:", r)
+        if (r.code !== 200 && r.message) {
+          message.error(r.message)
+        }
+        return Promise.resolve(r)
+      });
+    case 401:
+      doLogout({ tip: '登录已失效', type: 'error' });
+      initViews()
+      break;
     default:
       return (response.json()).then((json: any) => {
-        if (json.message && toast) {
+        if (json.message) {
           message.error(json.message)
         }
         return Promise.reject(json);
@@ -63,7 +48,8 @@ function fetchRequest(options: IRequestOptions) {
     credentials: options.credentials || Credentials,
     headers: {
       ...options.headers,
-      SESSION: instance.session,
+      ele: isElectron,
+      session: store.getState()?.user?.session,
     }
   };
 
@@ -89,8 +75,8 @@ function fetchRequest(options: IRequestOptions) {
     }
   }
 
-  return abortablePromise(fetch(requestUrl, config))
-    .then(response => checkStatus(response, options.toast));
+  return abortablePromise(fetch(requestUrl, config), options.timeout)
+    .then(response => checkStatus(response, options.download));
 }
 
 const request = {
@@ -98,10 +84,7 @@ const request = {
     return fetchRequest({
       ...opts,
       method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        ...opts.headers,
-      }
+      headers: { 'Accept': 'application/json' }
     });
   },
   post: (opts: IRequestOptions) => {
@@ -110,10 +93,9 @@ const request = {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        ...opts.headers,
+        'Content-Type': 'application/json'
       }
-    });
+    })
   },
   postForm: (opts: IRequestOptions) => {
     return fetchRequest({
@@ -121,20 +103,16 @@ const request = {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        ...opts.headers,
+        'Content-Type': 'application/x-www-form-urlencoded'
       }
-    });
+    })
   },
   delete: (opts: IRequestOptions) => {
     return fetchRequest({
       ...opts,
       method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        ...opts.headers,
-      }
-    });
+      headers: { 'Accept': 'application/json' }
+    })
   },
   put: (opts: IRequestOptions) => {
     return fetchRequest({
@@ -142,18 +120,16 @@ const request = {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        ...opts.headers,
+        'Content-Type': 'application/json'
       }
-    });
+    })
   },
   upload: (opts: IRequestOptions) => {
     return fetchRequest({
       ...opts,
       method: 'POST',
       headers: {
-        Accept: 'application/json',
-        ...opts.headers,
+        'Accept': 'application/json'
       },
       upload: true
     })

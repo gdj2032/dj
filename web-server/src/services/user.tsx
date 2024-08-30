@@ -1,41 +1,23 @@
 import { request } from '@/request';
+import { IUserState } from '@/stores/user';
 
-export function login(params: UserService.ILoginParams): Promise<IBaseRes<UserService.IUser>> {
+export function login(params: UserService.ILoginParams): T_RESPONSE_BASE<IUserState> {
   return request.post({
     path: '/user/login',
     data: params
   })
 }
 
-export function logout(): Promise<IBaseRes> {
+export function logout(): T_RESPONSE_BASE {
   return request.delete({
     path: '/user/logout',
   })
 }
 
-export function changePassword(parma: UserService.IResetPasswordInfo): Promise<IBaseRes> {
-  return request.put({
-    path: '/user/password',
-    data: parma,
-  })
-}
 
-export function getUsers(query: ILimitOffset): Promise<IBaseListRes<UserService.IUser>> {
+export function users(query: ILimitOffset): T_RESPONSE_LIST<UserService.IListData> {
   return request.get({
-    path: '/user/users',
-    query
-  })
-}
-
-export function register(data: UserService.IRegisterUser): Promise<IBaseRes<UserService.IUser>> {
-  return request.post({
-    path: '/user/register',
-    data
-  })
-}
-
-export function deleteUser(id: number): Promise<IBaseRes<UserService.IUser>> {
-  return request.delete({
-    path: `/user/delete/${id}`,
+    path: '/user',
+    query,
   })
 }

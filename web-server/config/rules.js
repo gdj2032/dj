@@ -35,7 +35,9 @@ exports.js = {
           [require.resolve("@babel/plugin-transform-runtime"), { "regenerator": true }],
           [require.resolve("@babel/plugin-proposal-decorators"), { legacy: true }],
           [require.resolve("@babel/plugin-proposal-class-properties"), { loose: true }],
-          [require.resolve("babel-plugin-import"), { libraryName: "antd", libraryDirectory: "lib", style: true }, 'antd'],
+          [require.resolve("@babel/plugin-proposal-private-methods"), { loose: true }],
+          [require.resolve("@babel/plugin-proposal-private-property-in-object"), { loose: true }],
+          [require.resolve("babel-plugin-import"), { libraryName: "antd", libraryDirectory: "lib", style: false }, 'antd'],
           ...formatBabelOptions(config.babelConfig.plugins),
           config.cssModule ?
             [require.resolve("babel-plugin-react-css-modules"), {
@@ -58,7 +60,7 @@ exports.js = {
             : null
         ].filter(plugin => !!plugin),
       }
-    }
+    },
   ],
   include: globals.SourceDirectory,
 };
@@ -139,8 +141,9 @@ exports.assets = {
   test: /\.(jpe?g|png|gif)$/,
   use: {
     loader: 'url-loader',
-    options: { limit: 10240 },
+    options: { esModule: false, limit: 10240 },
   },
+  type: 'javascript/auto'
 };
 
 exports.svg = {

@@ -1,47 +1,26 @@
 -- CREATE DATABASE IF NOT EXISTS dj;
 
-# drop table if exists t_route;
--- 路由
-create table if not exists t_route(
+drop table if exists t_view;
+-- 页面
+create table if not exists t_view(
     id bigint primary key not null auto_increment,
-    name varchar(20) not null unique, # 名称
-    description varchar(200), # 描述
+    title varchar(20) not null unique, # 路由名称
+    name varchar(100) not null unique, # 页面组件名称 首字母大写
+    view_type varchar(100) not null, # 页面类型
+    path varchar(100) not null unique, # 路径
     show_in_tab int not null default 0, # 是否在导航栏显示
     can_cancel int not null default 0, # 是否可删除
-    path_id bigint not null, # 路径id
-    parent_route_id bigint default null, # 父路由id
+    can_edit int not null default 0, # 是否可编辑
+    parent_view_id bigint default null, # 父路由id
     role_id bigint, # 角色id
-    creator_id bigint, # 创建人id
-    create_time datetime # 创建时间
-);
-
-# drop table if exists t_path;
--- 路径
-create table if not exists t_path(
-    id bigint primary key not null auto_increment,
-    name varchar(20) not null unique, # 名称
-    description varchar(200), # 描述
-    path varchar(100) not null unique, # 路径
-    creator_id bigint, # 创建人id
-    create_time datetime # 创建时间
-);
-
--- 页面类型
-create table if not exists t_page_type(
-    id bigint primary key not null auto_increment,
-    name varchar(20) not null unique # 名称
-);
-
--- 页面
-create table if not exists t_page(
-    id bigint primary key not null auto_increment,
-    page_type_id bigint not null, # 页面类型
     content longtext not null, # 字符串
     creator_id bigint, # 创建人id
     create_time datetime, # 创建时间
-    update_time datetime, # 编辑时间
-    constraint fk_page_type_id foreign key (page_type_id) references t_page_type(id) on delete restrict
+    update_time datetime # 编辑时间
 );
+
+insert into t_view values (null, '系统设置', 'System', 'PAGE', '/system', 0, 0, 0, null, null, '', 1, '2024-01-01 00:00:00', '2024-01-01 00:00:00');
+insert into t_view values (null, '登录', 'Login', 'CUSTOM', '/login', 0, 0, 0, null, null, '', 1, '2024-01-01 00:00:00', '2024-01-01 00:00:00');
 
 -- 用户表
 create table if not exists t_user(

@@ -1,2 +1,3 @@
-export { default as Home } from './home';
+export { default as System } from './system';
 export { default as Login } from './login';
+

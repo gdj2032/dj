@@ -8,7 +8,8 @@ import icTopRestore from '@/images/topbar/icon_top_restore.png';
 import icTopMax from '@/images/topbar/icon_top_max.png';
 import icTopMin from '@/images/topbar/ic_top_min.png';
 import icTopClose from '@/images/topbar/icon_top_close.png';
-import icLogo from '@/images/logo.png'
+import icLauncher from '@/images/logo.png';
+import pageRoutes from '@/pages/pageRoutes';
 
 const CustomEventType = 'frameWndEvent';
 
@@ -50,6 +51,7 @@ export declare type IFramePageState = {
 export default class PageFrame extends React.Component<IFramePageProps, IFramePageState> {
   static defaultProps = {
     minimizable: true,
+    hideTitleBar: !isElectron,
   }
   private _nativeWindowId: number;
   constructor(props: any) {
@@ -211,16 +213,16 @@ export default class PageFrame extends React.Component<IFramePageProps, IFramePa
   }
 
   render() {
-    const icon = this.props.icon === undefined ? <img className="default-app-icon" src={icLogo} /> : this.props.icon;
+    const icon = this.props.icon === undefined ? <img className="default-app-icon" src={icLauncher} /> : this.props.icon;
     const resizable = isElectron && (this.props.resizable === true || this.props.resizable === undefined); //明确指定了true或者election下未指定才显示
     const minimizable = isElectron && this.props.minimizable; //明确指定了true才不显示
     const closable = this.isClosable();
     return (
-      <div className={`page-frame ${this.props.className || ''}`} onClick={(e) => e.stopPropagation()}>
+      <div className={`page-frame ${isElectron && 'page-frame-ele'} ${this.props.className || ''}`} onClick={(e) => e.stopPropagation()}>
         {!this.props.hideTitleBar && (
           <div className={`page-frame-header ${this.props.transparent ? 'transparent' : ''}`}>
             <div className="page-frame-title-wrap">
-              {icon && <div className="page-frame-icon">{icon}</div>}
+              {icon && <div className="page-frame-icon" onClick={() => { window.location.hash = pageRoutes.home }}>{icon}</div>}
               {this.props.title && <div className={`page-frame-title ${this.props.titleAtCenter ? 'center-title' : ''}`}>{this.props.title}</div>}
             </div>
             <div className="page-frame-flex-area" />

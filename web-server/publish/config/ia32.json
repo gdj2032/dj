@@ -1,25 +1,21 @@
 {
   "asar": false,
-  "productName": "资料库",
-  "copyright": "Copyright © 2020 GDJ Inc. All Rights Reserved.",
-  "appId": "doongjie.gu",
+  "productName": "gdj-project",
+  "copyright": "Copyright © 2022 gdj Inc. All Rights Reserved.",
+  "appId": "dongjie.gu",
   "directories": {
     "buildResources": "res",
     "output": "pc_release/output/ia32"
   },
   "electronDist": ".\\publish\\electronDist\\ia32",
   "win": {
-    "icon": "../../favicon.ico",
+    "icon": "../favicon.ico",
     "files": [
       "res",
       "package.json",
       {
         "from": "pc_release/release",
         "to": "../app/release"
-      },
-      {
-        "from": "node_modules/socket.io-client",
-        "to": "../socket.io-client"
       },
       "!node_modules/**"
     ],
@@ -31,7 +27,7 @@
         ]
       }
     ],
-    "legalTrademarks": "gdj"
+    "legalTrademarks": "Gdj"
   },
   "nsis": {
     "oneClick": false,

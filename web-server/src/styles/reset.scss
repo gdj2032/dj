@@ -5,8 +5,10 @@
 
 html,
 body {
+  width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   // 修复iOS下滑动卡顿
   -webkit-overflow-scrolling: touch;
 
@@ -54,9 +56,9 @@ h6 {
   font-weight: normal;
 }
 
-// ul {
-//   list-style: none;
-// }
+ul {
+  list-style: none;
+}
 
 button,
 input,
@@ -78,9 +80,7 @@ html {
 img,
 embed,
 iframe,
-object,
-audio,
-video {
+object {
   height: auto;
   max-width: 100%;
 }
@@ -102,48 +102,4 @@ th {
 
 a:hover {
   text-decoration: none;
-}
-
-.yuna-breadcrumb {
-  background-color: #fff;
-  border-radius: 4px;
-  padding: 0 16px;
-}
-
-.ant-affix {
-  background-color: #fff;
-}
-
-.text-area-resize-none {
-  & textarea {
-    resize: none;
-  }
-}
-
-.global-black-symbol {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  text-align: center;
-  line-height: 16px;
-  border-radius: 50% 50%;
-  background-color: #000;
-  color: #fff;
-  font-size: 10px;
-  margin: 0 4px;
-}
-
-.global-red-point {
-  display: inline-block;
-  margin-right: 4px;
-  color: #ff4d4f;
-  font-size: 14px;
-  font-family: SimSun, sans-serif;
-  line-height: 1;
-  content: '*';
-}
-
-.wmde-markdown h1,
-.wmde-markdown h2 {
-  border-bottom: none;
 }

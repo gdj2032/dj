@@ -1,18 +1,16 @@
-import { RouteService } from '@/typings/route';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-
 export interface IRouteState {
-  routes: RouteService.IListData[],
-  currentRoute: RouteService.IListData,
+  routes: ViewService.IView[];
+  currentRoute: ViewService.IView;
   currentSelectKeys: string[];
 }
 
 const initialState: IRouteState = {
   routes: [],
   currentRoute: undefined,
-  currentSelectKeys: [],
+  currentSelectKeys: []
 };
 
 const routeSlice = createSlice({
@@ -36,7 +34,7 @@ const routeSlice = createSlice({
         ...state,
         currentSelectKeys: action.payload
       };
-    },
+    }
   }
 });
 
@@ -46,10 +44,4 @@ const { setRouteInfo, setCurrentRoute, setCurrentSelectKeys } = routeSlice.actio
 
 const routeReducer = routeSlice.reducer;
 
-export {
-  routeReducer,
-  routeInfo,
-  setRouteInfo,
-  setCurrentRoute,
-  setCurrentSelectKeys,
-};
+export { routeReducer, routeInfo, setRouteInfo, setCurrentRoute, setCurrentSelectKeys };

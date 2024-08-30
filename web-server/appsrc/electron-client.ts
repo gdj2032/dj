@@ -1,4 +1,4 @@
-import { ipcRenderer, IpcRendererEvent, desktopCapturer, Display, app, shell } from 'electron';
+import { ipcRenderer, IpcRendererEvent, desktopCapturer, Display, app } from 'electron';
 const remote = require('@electron/remote');
 
 export declare type Intent = {
@@ -408,28 +408,20 @@ class ElectronClient {
     return sysInfo;
   }
 
-  openExternal(url: string) {
-    shell.openExternal(url)
+  openUrl(url: string) {
+    this.sendMessageToApp('open-url', { url });
   }
 
-  realmCreate(data: { name: string; params: any }) {
-    this.sendMessageToApp('realm-create', data);
+  setBook(data: { filename: string, content: string }) {
+    return this.sendMessageToApp('save-book', data);
   }
 
-  realmFind(name: string) {
-    return this.sendMessageToApp('realm-find', name);
+  getBook(data: { filename: string }) {
+    return this.sendMessageToApp('get-book', data);
   }
 
-  realmFindKey(data: { name: string; key: any }) {
-    this.sendMessageToApp('realm-findKey', data);
-  }
-
-  realmModify(data: { name: string; key: any; params: any }) {
-    this.sendMessageToApp('realm-modify', data);
-  }
-
-  realmDelete(data: { name: string; key: any }) {
-    this.sendMessageToApp('realm-delete', data);
+  deleteBook(data: { filename: string }) {
+    this.sendMessageToApp('delete-book', data);
   }
 }
 

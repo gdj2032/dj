@@ -14,7 +14,7 @@ module.exports = function () {
     module: {
       rules: [
         ...rules.devCssRuleList,
-      ],
+      ]
     },
     plugins: plugins.devPlugins(),
     devtool: 'eval-cheap-module-source-map',

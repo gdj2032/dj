@@ -4,22 +4,28 @@
  **/
 
 // 颜色定义
-$theme-color: #4D8BED;
-$nav-color: #0f203a;
+$theme-color: rgb(255, 255, 255);
+$theme-btn-color: #1677ff;
 $content-bg: #FFFFFF;
 $white: #FFFFFF;
-$dark-background-topbar: #000000; //顶部条颜色
+$dark-background-topbar: rgb(60, 60, 60); //顶部条颜色
 
-$primary-btn-color: $theme-color;
+$primary-btn-color: $theme-btn-color;
 
 $login-project-name: #373B40;
 $login-bg-color: #E7F1FF;
 $login-title-color: #333748;
 $login-label-color: #81868C;
 
-$nav-white: #fff;
-$menu-nor-color: #B5BBD1;
-$header-font-color: #FFF;
+$nav-white: #FFFFFF;
+$menu-nor-color: #FFFFFF;
+$header-font-color: #0f0e0e;
+
+// 布局定义
+$page-min-width: 1280px;
+$side-menu-width: 200px;
+$page-frame-header-height: 36px;
+$header_height: 50px;
 
 //危险操作
 $dark-danger-clr: #F94319;
@@ -30,10 +36,3 @@ $dark-danger-clr-active: #F9431980;
 $dark-normal-clr: #B8C1E0;
 $dark-normal-clr-hover: #B8C1E0;
 $dark-normal-clr-active: #B8C1E080;
-
-// 布局定义
-$header-height: 64px;
-$page-min-width: 1280px;
-$side-menu-width: 200px;
-
-$ant-prefix: 'antd';

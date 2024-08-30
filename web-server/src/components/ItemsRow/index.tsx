@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button, { ButtonType, ButtonProps } from 'antd/lib/button';
-import 'antd/lib/button/style'
+import { getClassName } from '../util';
 import './index.scss'
 
 /**
@@ -41,6 +41,11 @@ export interface IItemRowProps {
   offsetTop?: number;
 }
 
+const classname = (n: string = '') => {
+  const cn = 'items-row'
+  return getClassName(cn, n);
+};
+
 export default class ItemRow extends React.Component<IItemRowProps, any> {
 
   render() {
@@ -48,10 +53,10 @@ export default class ItemRow extends React.Component<IItemRowProps, any> {
       return null;
     }
     return (
-      <div className={`c-items-row ${this.props.className || ''}`} style={this.props.style}>
+      <div className={`${classname()} ${this.props.className || ''}`} style={this.props.style}>
         {
           (this.props.items || []).map((item, index) => {
-            const className = `c-items-row-item ${item.className}`;
+            const className = `${classname('item')} ${item.className}`;
             if (item.render) {
               return <span key={index} className={className}>{item.render()}</span>
             }

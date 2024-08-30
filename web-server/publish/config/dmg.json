@@ -1,8 +1,8 @@
 {
-  "asar": true,
-  "productName": "资料库",
-  "copyright": "Copyright © 2020 GDJ Inc. All Rights Reserved.",
-  "appId": "com.tmindtech.com",
+  "asar": false,
+  "productName": "gdj-project",
+  "copyright": "Copyright © 2022 gdj Inc. All Rights Reserved.",
+  "appId": "dongjie.gu",
   "directories": {
     "output": "pc_release/output/dmg"
   },

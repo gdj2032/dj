@@ -1,4 +1,38 @@
 @import './reset.scss';
+@import './function.scss';
+@import './themes.scss';
+@import 'quill/dist/quill.snow.css';
+
+.global-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.global-ellipsis-line-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.global-mgr-20 {
+  margin-right: 20px;
+}
+
+.global-mgt-8 {
+  margin-top: 8px;
+}
+
+.global-mgl-12 {
+  margin-left: 12px;
+}
+
+.global-mgt-12 {
+  margin-top: 12px;
+}
 
 .text-area-resize-none {
   & textarea {
@@ -27,4 +61,45 @@
   font-family: SimSun, sans-serif;
   line-height: 1;
   content: '*';
+}
+
+.ant-form-label-point-show {
+  .ant-form-item-label> {
+    ::before {
+      display: inline-block;
+      margin-right: 4px;
+      color: #ff4d4f;
+      font-size: 14px;
+      font-family: SimSun, sans-serif;
+      line-height: 1;
+      content: '*';
+    }
+  }
+}
+
+.global-h1 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 48px;
+}
+
+.global-h2 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+}
+
+.global-description {
+  border-left: 4px solid #ccc;
+  padding-left: 8px;
+  line-height: 20px;
+  font-size: 14px;
+}
+
+.global-cursor-pointer {
+  opacity: 0.8;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

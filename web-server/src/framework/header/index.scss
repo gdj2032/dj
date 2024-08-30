@@ -4,12 +4,18 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  height: $header-height;
+  height: $header_height;
   padding: 0 20px;
-  color: $header-font-color !important;
+  color: var(--theme-font);
   user-select: none;
-  background: $nav-color !important;
-  line-height: 64px;
+  line-height: $header_height;
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid var(--theme-border-color);
+
+  background-size: 100% 50px;
+  background-image: url(../../images/login/top.png);
+  color: #e0eff6;
+  background-repeat: no-repeat;
 
   .u-left-menu {
     flex: 1;
@@ -21,15 +27,19 @@
   }
 
   .u-right-menu {
+    height: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
 
     .u-item {
+      display: flex;
+      align-items: center;
+
       .u-icon {
         font-size: 16px;
+        fill: var(--theme-font);
       }
 
       .u-text {
@@ -38,12 +48,24 @@
       }
     }
 
-    .u-logout {
+    .u-login {
       cursor: pointer;
+      font-size: 18px;
     }
 
     .u-item+.u-item {
       margin-left: 24px;
+    }
+
+    .m-github {
+      cursor: pointer;
+
+      &-icon {
+        font-size: 16px;
+        color: var(--theme-font);
+      }
+
+      &:hover {}
     }
   }
 }

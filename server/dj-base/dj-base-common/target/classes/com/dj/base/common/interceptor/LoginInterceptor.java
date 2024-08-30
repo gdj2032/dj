@@ -17,24 +17,24 @@ public class LoginInterceptor implements HandlerInterceptor {
     // 目标资源方法运行前运行,返回 true,放行, false 不放行
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
-        String url = req.getRequestURL().toString();
-        log.info("preHandle: " + url);
-        if (url.contains("login")) {
-            return true;
-        }
-        String jwt = req.getHeader(GlobalConstant.SESSION);
-        if (!StringUtils.hasLength(jwt)) {
-            log.info("未登录");
-            throw BaseResult.NO_AUTH.message("未登录").exception();
-        }
-        try {
-            JwtUtil.parseJwt(jwt);
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.info("令牌校验失败");
-            throw BaseResult.NO_AUTH.message("未登录").exception();
-        }
-        log.info("令牌校验成功");
+//        String url = req.getRequestURL().toString();
+//        log.info("preHandle: " + url);
+//        if (url.contains("login")) {
+//            return true;
+//        }
+//        String jwt = req.getHeader(GlobalConstant.SESSION);
+//        if (!StringUtils.hasLength(jwt)) {
+//            log.info("未登录");
+//            throw BaseResult.NO_AUTH.message("未登录").exception();
+//        }
+//        try {
+//            JwtUtil.parseJwt(jwt);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            log.info("令牌校验失败");
+//            throw BaseResult.NO_AUTH.message("未登录").exception();
+//        }
+//        log.info("令牌校验成功");
         return true;
     }
 

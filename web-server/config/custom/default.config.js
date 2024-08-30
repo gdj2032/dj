@@ -34,6 +34,7 @@ module.exports = {
 
   // antd 主题覆盖
   cssModifyVars: {
+    // '@ant-prefix': 'y-m-ant',
     // 'primary-color': '#1DA57A',
   },
 
@@ -45,13 +46,13 @@ module.exports = {
       'process.env.BUILD_ENV': JSON.stringify('development'),
     },
 
-    port: '8000',  // dev server 运行的端口
+    port: 9000,  // dev server 运行的端口
 
     supportBrowserRouter: false, // 是否支持BrowserRouter
 
     vConsole: false, // 是否开启vConsole插件，移动端调试工具
 
-    mock: false,
+    mock: true,
 
     mockPath: '/mock',
   },
@@ -60,24 +61,11 @@ module.exports = {
     compress: true, // gzip压缩
     hot: true, // 热更新
     historyApiFallback: true, // 解决启动后刷新404
-    open: true,
-    port: 8000,
+    // open: true,
+    port: 9000,
     static: {
       directory: path.resolve(__dirname, "dist")
     },
-    proxy: {
-      '/mock/*': {
-        target: 'http://localhost:3721',
-        changeOrigin: true,
-      },
-      '/api/*': {
-        target: 'http://localhost:9999',
-        pathRewrite: {
-          '^/api': '/api'
-        },
-        changeOrigin: true
-      }
-    }
   },
 
   // 仅作用在build

@@ -1,6 +1,9 @@
 package com.dj.base.common.utils;
 
+import org.springframework.util.StringUtils;
+
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -12,10 +15,33 @@ public class DateUtil {
     public static final String YYYY = "yyyy";
     public static final String MM = "MM";
     public static final String DD = "dd";
+    public static final String YM = "yyyy-MM";
     public static final String YMD = "yyyy-MM-dd";
+    public static final String YMD_DOT = "yyyy.MM.dd";
     public static final String YMD_HMS = "yyyy-MM-dd HH:mm:ss";
     public static final String YMD_000 = "yyyy-MM-dd 00:00:00";
     public static final String YMD_end = "yyyy-MM-dd 23:59:59";
+
+    public static String getDate() {
+        return format(new Date(), YMD);
+    }
+
+    public static String getMonth() { return format(new Date(), YM); }
+
+    public static String format(Date date, String pattern) {
+        if (date == null) return null;
+        if (!StringUtils.hasLength(pattern)) pattern = YMD;
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(date);
+    }
+
+    public static String format(Timestamp date, String pattern) {
+        if (date == null) return null;
+        if (!StringUtils.hasLength(pattern)) pattern = YMD;
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        return sdf.format(date);
+    }
+
 
     public static Long currentTime() {
         return System.currentTimeMillis();

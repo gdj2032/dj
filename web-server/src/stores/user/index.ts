@@ -1,14 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-export interface IUserState extends UserService.IUser {
+export interface IUserState {
+  id: string,
+  isLogin?: boolean,
+  first?: boolean,
+  username: string;
+  role: string;
+  session: string;
 }
 
 const initialState: IUserState = {
   id: '',
   username: '',
-  createTime: '',
-  role: ''
+  role: '-1',
+  session: '',
 };
 
 const userSlice = createSlice({
